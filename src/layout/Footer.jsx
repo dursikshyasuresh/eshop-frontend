@@ -33,7 +33,7 @@ const footerLinks = [
   },
 ]
 
-export function Footer() {
+export default function Footer() {
   return (
     <footer className="border-t border-border bg-secondary/40">
       <div className="container py-12">

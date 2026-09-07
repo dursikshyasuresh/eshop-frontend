@@ -50,3 +50,17 @@
 .container{
   @apply max-w-7xl mx-auto px-4 md:px-6
 }
+
+
+.eyebrow{
+  @apply mb-1 text-sm font-semibold uppercase tracking-wide text-primary
+}
+
+.section-title{
+  @apply text-2xl font-bold tracking-tight text-gray-800 
+  sm:text-3xl
+}
+
+.section-desc{
+  @apply mt-2 max-w-xl text-muted-foreground
+}
