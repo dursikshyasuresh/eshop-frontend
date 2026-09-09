@@ -50,7 +50,8 @@ const Navbar = () => {
                 <Input placeholder="Serach products..." className="pl-9" />
               </form>
               {/* right side */}
-              <Button variant="ghost" size="icon" asChild>
+             <div className="ml-auto flex items-center gap-2 md:ml-2">
+               <Button variant="ghost" size="icon" asChild>
                  <Link to="/carts" className="relative">
                    <ShoppingCart className="size-5" />
                    {
@@ -81,6 +82,7 @@ const Navbar = () => {
                   Login
                 </Link>
               </Button>
+             </div>
            </div>
     </div>
   )
