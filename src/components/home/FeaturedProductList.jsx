@@ -3,7 +3,7 @@ import ProductCard from "../cards/ProductCard"
 
 const FeaturedProductList = () => {
   return (
-    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
       {
         products.slice(0,8).map(item => (
           <ProductCard key={item.id} product={item}  />
