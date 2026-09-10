@@ -14,6 +14,8 @@ import {Button} from "@/components/ui/button"
 import {Heart,ShoppingCart,Zap,ShieldCheck,RotateCcw,Star,Truck} from "lucide-react"
 import { useState } from "react";
 import {Badge} from "@/components/ui/badge"
+import QuantitySelector from "../components/common/QuantitySelector";
+import { Separator } from "@/components/ui/separator";
 
 const ProductDetails = () => {
   const {id} = useParams()
@@ -135,16 +137,16 @@ const ProductDetails = () => {
             {product.description}
           </p>
 
-          {/* <Separator className="my-6" /> */}
+          <Separator className="my-6" />
 
           <div className="flex flex-wrap items-center gap-4">
-            {/* <QuantitySelector
+            <QuantitySelector
               quantity={quantity}
               onIncrease={() =>
                 setQuantity((q) => Math.min(product.stock, q + 1))
               }
               onDecrease={() => setQuantity((q) => Math.max(1, q - 1))}
-            /> */}
+            />
 
             <Button
               size="lg"
@@ -184,7 +186,7 @@ const ProductDetails = () => {
       </div>
 
       {/* related product */}
-      <section className="mt-8">
+      <section className="mt-16">
         <h1 className="section-title mb-6">You may also like</h1>
         <RelatedProducts />
       </section>
