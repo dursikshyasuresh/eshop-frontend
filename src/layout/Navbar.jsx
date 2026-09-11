@@ -2,6 +2,7 @@ import {Search,ShoppingCart,Heart,User,Menu,ShoppingBag} from "lucide-react"
 import { Link, NavLink } from "react-router-dom"
 import {Input} from "@/components/ui/input"
 import {Button} from "@/components/ui/button"
+import MobileMenu from "./MobileMenu"
 
 
 const navLinks = [
@@ -19,7 +20,7 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur">
            <div className="container flex h-16 items-center gap-4">
-              <Menu className="size-5 md:hidden" />
+             <MobileMenu />
 
               {/* brand logo */}
               <div className="flex items-center gap-2">
