@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom"
 import {Input} from "@/components/ui/input"
 import {Button} from "@/components/ui/button"
 import MobileMenu from "./MobileMenu"
+import SearchBar from "../components/common/SearchBar"
 
 
 const navLinks = [
@@ -46,10 +47,8 @@ const Navbar = () => {
               </nav>
 
               {/* search bar */}
-              <form className="relative ml-auto hidden max-w-sm flex-1 md:block">
-                <Search className="pointer-events-none absolute left-3 top-3 size-4  text-muted-foreground" />
-                <Input placeholder="Serach products..." className="pl-9" />
-              </form>
+              <SearchBar className="ml-auto hidden max-w-sm flex-1 md:block" />
+
               {/* right side */}
              <div className="ml-auto flex items-center gap-2 md:ml-2">
                <Button variant="ghost" size="icon" asChild>
