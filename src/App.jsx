@@ -8,6 +8,7 @@ import Register from "./pages/Register"
 import Cart from "./pages/Cart"
 import Wishlists from "./pages/Wishlists"
 import PageNotFound from "./pages/PageNotFound"
+import Checkout from "./pages/Checkout"
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/carts" element={<Cart />} />
             <Route path="/wishlists" element={<Wishlists />} />
+            <Route path="/checkout" element={<Checkout />} />
          </Route>
 
          {/* page not found */}

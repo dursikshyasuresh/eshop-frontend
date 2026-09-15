@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import ProductFilters from "../components/ProductFilters";
 
 const Products = () => {
   return (
@@ -36,7 +37,9 @@ const Products = () => {
         className="grid gap-8 
        lg:grid-cols-[240px_1fr]"
       >
-        <aside className="hidden lg:block">Product Filters</aside>
+        <aside className="hidden lg:block">
+          <ProductFilters />
+        </aside>
 
         <div>
           <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -61,7 +64,7 @@ const Products = () => {
                   <SheetHeader>
                     <SheetTitle>Filters</SheetTitle>
                   </SheetHeader>
-                  Product Filters
+                  <ProductFilters />
                 </SheetContent>
               </Sheet>
 
@@ -71,8 +74,18 @@ const Products = () => {
                   <SelectValue placeholder="Sort By" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem>Featured</SelectItem>
-                  <SelectItem>Newest</SelectItem>
+                  <SelectItem value="featured">
+                    Featured
+                  </SelectItem>
+                  <SelectItem value="newest">
+                    Newest
+                  </SelectItem>
+                  <SelectItem value="price-low">
+                    Price: Low to High
+                  </SelectItem>
+                  <SelectItem value="price-high">
+                    Price: High to Low
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>

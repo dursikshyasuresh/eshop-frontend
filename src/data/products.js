@@ -1,3 +1,12 @@
+export const priceRanges = [
+  { id: "all", label: "All prices", min: 0, max: Infinity },
+  { id: "under-100", label: "Under $100", min: 0, max: 100 },
+  { id: "100-300", label: "$100 - $300", min: 100, max: 300 },
+  { id: "300-1000", label: "$300 - $1000", min: 300, max: 1000 },
+  { id: "over-1000", label: "Over $1000", min: 1000, max: Infinity },
+]
+
+
 export const categories = [
   { id: "audio", name: "Audio", image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80" },
   { id: "wearables", name: "Wearables", image: "https://images.unsplash.com/photo-1544117519-31a4b719223d?w=400&q=80" },
