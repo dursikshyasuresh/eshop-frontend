@@ -2,7 +2,7 @@ const CategoryCard = ({item}) => {
   return (
     <div className="group relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-xl border border-border">
        <img 
-       src={item.image} 
+       src={`http://localhost:4000${item.image}`} 
        alt={item.name} 
        className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
        />
