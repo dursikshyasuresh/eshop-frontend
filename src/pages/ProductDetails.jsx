@@ -16,15 +16,18 @@ import { useState } from "react";
 import {Badge} from "@/components/ui/badge"
 import QuantitySelector from "../components/common/QuantitySelector";
 import { Separator } from "@/components/ui/separator";
+import { useProduct } from "../api/productServices";
 
 const ProductDetails = () => {
   const {id} = useParams()
 
-  const product = products[id - 1]
+  const{data:product,isLoading,error} = useProduct(id)
+  if(isLoading) return <p>loading....</p>
+  if(error) return <p>{error.message || "Something went wrong!"}</p>
 
   const [activeImage, setActiveImage] = useState(0)
   const [quantity, setQuantity] = useState(1)
-
+  console.log(product);
   return (
     <div className="container py-16">
       <Breadcrumb>
@@ -53,9 +56,9 @@ const ProductDetails = () => {
       <div className="mt-6 grid gap-10 lg:grid-cols-2">
         {/* left side */}
         <div>
-          <div className="max-h-[70vh] overflow-hidden rounded-xl border border-border bg-muted">
+          {/* <div className="max-h-[70vh] overflow-hidden rounded-xl border border-border bg-muted">
             <img
-              src={product.images?.[activeImage] ?? product.image}
+              src={product?.images?.[activeImage] ?? product?.image}
               alt={product.title}
               className="h-full w-full object-contain"
             />
@@ -77,33 +80,24 @@ const ProductDetails = () => {
                 />
               </button>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* right side */}
         <div>
           <p className="text-sm font-medium uppercase tracking-wide text-primary">
-            {product.category}
+            {product?.category?.name}
           </p>
           <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             {product.title}
           </h1>
           <div className="mt-3 flex items-center gap-1.5">
-            <div className="flex gap-1 items-center">
-              <Star size={15} className="fill-amber-300" />
-              <span className="text-sm font-semibold text-muted-foreground">
-                4.5
-              </span>
-            </div>
-            <span className="text-[11px] font-medium text-pink-700">
-              ({product.reviews} reviews)
-            </span>
-            {product.isNew && <Badge>New</Badge>}
+            {product?.isNew && <Badge>New</Badge>}
           </div>
 
           {/* stock */}
           <div className="flex items-center gap-2 mt-5">
-            {product.hasDiscount !== null ? (
+            {product?.hasDiscount !== null ? (
               <>
                 {/* Discount Price */}
                 <span className="text-2xl font-bold text-foreground">

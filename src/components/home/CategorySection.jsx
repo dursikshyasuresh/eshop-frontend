@@ -1,16 +1,9 @@
-import { useQuery } from "@tanstack/react-query"
 import CategoryCard from "../cards/CategoryCard"
-import axios from "axios"
+import { useCategories } from "../../api/categoryServices"
 
 const CategorySection = () => {
   // calling api to fetch categories
-  const {data,isLoading,error} = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      const response = await axios.get("http://localhost:4000/api/categories")
-      return response.data
-    }
-  })
+  const {data,isLoading,error} = useCategories()
 
   if(isLoading) return <p>loading...</p>
   if(error) return <p>Something went wrong!</p>

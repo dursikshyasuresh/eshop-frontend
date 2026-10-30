@@ -5,12 +5,12 @@ import { Eye, Heart, ShoppingCart } from "lucide-react";
 
 const ProductCard = ({ product }) => {
   const hasDiscount =
-    product.discountPrice != null && product.discountPrice < product.price;
+    product?.discountPrice != null && product?.discountPrice < product?.price;
 
   // calculate discount percentage
   const discountPercent = hasDiscount
     ? Math.round(
-        ((product.price - product.discountPrice) / product.price) * 100,
+        ((product?.price - product?.discountPrice) / product?.price) * 100,
       )
     : 0;
 
@@ -21,9 +21,9 @@ const ProductCard = ({ product }) => {
     >
       {/* product image */}
       <div className="relative aspect-square overflow-hidden bg-muted">
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/product/${product._id}`}>
           <img
-            src={product.image}
+            src={`http://localhost:4000${product.images[0]}`}
             alt={product.title}
             className="aspect-square object-cover transition-transform duration-300 group-hover:scale-105 object-center"
           />
@@ -49,7 +49,7 @@ const ProductCard = ({ product }) => {
 
         {/* view details */}
         <Link
-          to={`/product/${product.id}`}
+          to={`/product/${product._id}`}
           className="absolute inset-x-2 bottom-2 flex translate-y-2 items-center justify-center gap-1.5 rounded-md bg-background/95 py-2 text-sm font-medium opacity-0 group-hover:opacity-100 shadow-sm transition-all group-hover:translate-y-0"
         >
           <Eye className="size-3.5" />
@@ -60,7 +60,7 @@ const ProductCard = ({ product }) => {
       {/* product info */}
       <div className="flex flex-col gap-2 p-4">
         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-            {product.category}
+            {product.category.name}
         </p>
 
         {/* title */}

@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { SlidersHorizontal } from "lucide-react";
-import { products } from "../data/products";
 import ProductCard from "../components/cards/ProductCard";
 import {
   Select,
@@ -22,8 +21,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import ProductFilters from "../components/ProductFilters";
+import { useProducts } from "../api/productServices";
 
 const Products = () => {
+  const {data,isLoading,error} = useProducts({})
+  if(isLoading) return <p>loading...</p>
+  if(error) return <p>Something went wrong!</p>
+
+  console.log(data);
+
   return (
     <div className="container py-10">
       <div className="mb-8">
@@ -92,8 +98,8 @@ const Products = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {products.slice(0, 8).map((item) => (
-              <ProductCard key={item.id} product={item} />
+            {data.products.map((item) => (
+              <ProductCard key={item._id} product={item} />
             ))}
           </div>
         </div>
