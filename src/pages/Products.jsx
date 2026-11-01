@@ -22,11 +22,20 @@ import {
 } from "@/components/ui/select";
 import ProductFilters from "../components/ProductFilters";
 import { useProducts } from "../api/productServices";
+import { useState } from "react";
+import { useDebounce } from "use-debounce";
 
 const Products = () => {
-  const {data,isLoading,error} = useProducts({})
+  const [searchValue,setSearchValue] = useState("")
+  
+  const [debouncedSearchValue] = useDebounce(searchValue,500)
+
+  const {data,isLoading,error} = useProducts({
+    search: debouncedSearchValue
+  })
   if(isLoading) return <p>loading...</p>
   if(error) return <p>Something went wrong!</p>
+  if(!data.products || data.products.length === 0) return <p>Product Not Found!</p>
 
   console.log(data);
 
@@ -49,7 +58,8 @@ const Products = () => {
 
         <div>
           <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <SearchBar className="sm:max-w-xs" />
+            <SearchBar value={searchValue} 
+           onChange={setSearchValue} className="sm:max-w-xs" />
 
             <div className="flex items-center gap-2 sm:ml-auto">
               {/* filter sheet */}

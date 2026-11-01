@@ -2,17 +2,15 @@ import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Eye, Heart, ShoppingCart } from "lucide-react";
+import getImageUrl from "../../utils/getImageUrl";
+import { getDiscountInfo } from "../../utils/getDiscountInfo";
 
 const ProductCard = ({ product }) => {
-  const hasDiscount =
-    product?.discountPrice != null && product?.discountPrice < product?.price;
 
-  // calculate discount percentage
-  const discountPercent = hasDiscount
-    ? Math.round(
-        ((product?.price - product?.discountPrice) / product?.price) * 100,
-      )
-    : 0;
+  const images = product.images ?? []
+  const imageUrl = getImageUrl(images[0])
+  
+  const {discountPercent,hasDiscount} = getDiscountInfo(product.price,product.discountPrice)
 
   return (
     <div
@@ -23,7 +21,7 @@ const ProductCard = ({ product }) => {
       <div className="relative aspect-square overflow-hidden bg-muted">
         <Link to={`/product/${product._id}`}>
           <img
-            src={`http://localhost:4000${product.images[0]}`}
+            src={imageUrl}
             alt={product.title}
             className="aspect-square object-cover transition-transform duration-300 group-hover:scale-105 object-center"
           />
@@ -31,7 +29,7 @@ const ProductCard = ({ product }) => {
 
         {/* badges */}
         <div className="absolute left-2 top-2 flex flex-col gap-1">
-          {product.isNew && (
+          {product.isNewArrival && (
             <Badge className="bg-slate-800 hover:bg-slate-800/80">New</Badge>
           )}
 
